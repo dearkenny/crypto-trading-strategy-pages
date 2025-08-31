@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 加密货币交易策略</title>
+    <style>
+        :root {
+            --primary-color: #2a71d0;
+            --secondary-color: #1e3a8a;
+            --accent-color: #38bdf8;
+            --text-color: #333;
+            --light-bg: #f8fafc;
+            --dark-bg: #0f172a;
+            --success: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            background-color: var(--dark-bg);
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-bg);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #555;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-info {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .info-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-3px);
+            background-color: var(--secondary-color);
+        }
+        
+        .image-gallery {
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .gallery-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .success-message {
+            display: none;
+            background-color: var(--success);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>加密货币交易策略</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="strategies.html">交易策略</a></li>
+            <li><a href="resources.html">资源</a></li>
+            <li><a href="faq.html">常见问题</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="hero">
+            <h1>联系我们</h1>
+            <p>我们非常乐意听到您的声音！无论您有疑问、建议，还是想与我们合作，都欢迎通过以下方式与我们联系。您的反馈是我们不断改进和创新的动力。</p>
+        </div>
+        
+        <div class="contact-grid">
+            <div class="contact-form">
+                <h2 class="section-title">发送消息</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">电子邮箱</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">主题</label>
+                        <select id="subject" name="subject">
+                            <option value="general">一般咨询</option>
+                            <option value="support">技术支持</option>
+                            <option value="partnership">合作提案</option>
+                            <option value="feedback">反馈建议</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">消息内容</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit">发送消息</button>
+                    
+                    <div class="success-message" id="successMessage">
+                        您的消息已成功发送！我们会尽快回复您。
+                    </div>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <h2 class="section-title">联系方式</h2>
+                
+                <div class="info-item">
+                    <h3>电子邮箱</h3>
+                    <p>如果您偏好使用电子邮件，可以发送邮件至我们的官方邮箱。对于合作提案、技术支持或详细咨询，这是一个很好的选择。</p>
+                    <p><strong>邮箱地址：</strong> contact@yourcryptostrategy.com</p>
+                </div>
+                
+                <div class="info-item">
+                    <h3>社交媒体</h3>
+                    <p>加入我们的社区，与其他交易者交流，并获取最新的策略更新和市场分析。</p>
+                    <div class="social-links">
+                        <a href="#" title="Twitter"><i>T</i></a>
+                        <a href="#" title="Telegram"><i>TG</i></a>
+                        <a href="#" title="Discord"><i>D</i></a>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <h3>常见问题解答 (FAQ)</h3>
+                    <p>在联系我们之前，建议您先查看我们的"常见问题解答"页面。我们整理了关于策略安装、参数配置、风险管理和平台兼容性等常见问题的答案。</p>
+                    <p><a href="faq.html" style="color: var(--primary-color);">查看常见问题</a></p>
+                </div>
+                
+                <div class="info-item">
+                    <h3>我们重视您的反馈</h3>
+                    <p>您的每一个想法、建议或问题都对我们至关重要。正是因为社区的积极反馈，我们才能持续优化策略，开发出更强大、更可靠的交易工具。请不要犹豫，与我们分享您的想法！</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="image-gallery">
+            <h2 class="gallery-title">加密货币交易策略资源</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="https://storage.cryptomus.com/PXVGaelT7D0yqaJq0ica49GKjSgKQOFGoLqQTLJF.jpg" alt="初学者的加密货币交易策略">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.ctfassets.net/s9n78lc7gxyk/55wKnTgalG8UHmk2JngpVD/b86ad3bdb57c108a4ba1dad3767d8e77/3D_upward_arrows__Bitcoin_and_Ethereum_icons__dynamic_price_chart_in_a_light_style__no_more_element.jpg" alt="5 种加密货币交易策略，抓住市场动能">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://storage.cryptomus.com/OBgk7j1ks8PkMpZAFQgVQN0hobcoIBHuMMZugBte.jpg" alt="加密货币交易图表分析">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 加密货币交易策略 | 版权所有</p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 模拟表单提交
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('contactForm').reset();
+                
+                // 5秒后隐藏成功消息
+                setTimeout(function() {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            }, 1000);
+        });
+        
+        // 响应式导航菜单
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            nav.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
