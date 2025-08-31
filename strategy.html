@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加密货币交易策略 - 趋势跟踪策略详解</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+        
+        header {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.5rem;
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+        
+        .hero {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .strategy-section {
+            margin-bottom: 3rem;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .strategy-section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .strategy-section h3 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .strategy-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .strategy-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .chart-container {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin: 2rem auto;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .strategy-points {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .strategy-points h4 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .strategy-points ul {
+            list-style-position: inside;
+            margin-left: 1rem;
+        }
+        
+        .strategy-points li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .parameter-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .parameter-table th, .parameter-table td {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        .parameter-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .parameter-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .parameter-table tr:hover {
+            background-color: #e9e9e9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .cta-button:hover {
+            background-color: #c0392b;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: var(--secondary-color);
+                padding: 1rem 0;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">CryptoStrategy</div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="backtest.html">回测结果</a></li>
+                    <li><a href="deployment.html">部署指南</a></li>
+                    <li><a href="faq.html">常见问题</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger">☰</button>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="hero">
+            <h1>加密货币交易策略详解</h1>
+            <p>掌握市场脉搏，构建稳健的交易体系</p>
+        </section>
+        
+        <section class="strategy-section">
+            <h2>策略核心：趋势跟踪（Trend Following）</h2>
+            
+            <img src="https://images.ctfassets.net/s9n78lc7gxyk/55wKnTgalG8UHmk2JngpVD/b86ad3bdb57c108a4ba1dad3767d8e77/3D_upward_arrows__Bitcoin_and_Ethereum_icons__dynamic_price_chart_in_a_light_style__no_more_element.jpg" alt="加密货币趋势跟踪策略图示" class="strategy-image">
+            
+            <h3>1. 策略逻辑：顺势而为</h3>
+            <p>趋势跟踪策略的哲学非常直观："顺势而为"。其核心思想是，一旦市场形成明确的上升或下降趋势，这种趋势很可能会持续一段时间。因此，交易者不预测市场的顶部或底部，而是识别并跟随当前的主导趋势，力求在趋势发展过程中获利。</p>
+            
+            <div class="strategy-points">
+                <h4>趋势类型</h4>
+                <ul>
+                    <li><strong>上升趋势</strong>：当价格呈现一系列更高的低点（Higher Lows）和更高的高点（Higher Highs）时，策略是在价格回调时买入或在突破关键点位后追涨。</li>
+                    <li><strong>下降趋势</strong>：当价格呈现一系列更低的高点（Lower Highs）和更低的低点（Lower Lows）时，策略是卖出（或做空）。</li>
+                </ul>
+            </div>
+            
+            <p>这种策略的优势在于它能抓住市场的大幅波动，从而可能带来可观的利润。</p>
+            
+            <h3>2. 常用技术指标与参数设置</h3>
+            <p>为了客观地判断趋势，交易者通常会借助技术指标。其中，移动平均线（Moving Averages, MA）是最常用且有效的工具之一。</p>
+            
+            <table class="parameter-table">
+                <thead>
+                    <tr>
+                        <th>指标类型</th>
+                        <th>描述</th>
+                        <th>适用场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>简单移动平均线 (SMA)</td>
+                        <td>计算特定周期内收盘价的算术平均值</td>
+                        <td>波动较小的市场环境</td>
+                    </tr>
+                    <tr>
+                        <td>指数移动平均线 (EMA)</td>
+                        <td>给予近期价格更高的权重，使其对价格变动更敏感</td>
+                        <td>波动剧烈的加密货币市场</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="strategy-points">
+                <h4>参数设置与应用："黄金交叉"与"死亡交叉"</h4>
+                <p>我们以两条EMA线组合为例，这是一种经典的趋势判断方法：</p>
+                <ul>
+                    <li><strong>短期EMA</strong>：通常设置为12周期或26周期，用于捕捉近期的价格动态。</li>
+                    <li><strong>长期EMA</strong>：通常设置为50周期或200周期，用于识别长期的市场趋势。</li>
+                </ul>
+            </div>
+            
+            <img src="https://storage.cryptomus.com/3K3Uo5WTHR342BSruPDtYuKP7OjL4uTu61M843xW.jpg" alt="移动平均线交叉示意图" class="strategy-image">
+            
+            <h3>3. 策略运作实例</h3>
+            <p>让我们以比特币（BTC）日线图为例，阐述如何运用EMA双线策略：</p>
+            
+            <div class="strategy-points">
+                <h4>买入信号（黄金交叉）</h4>
+                <ul>
+                    <li><strong>情景</strong>：假设BTC价格在一段时间的下跌或盘整后开始回暖。</li>
+                    <li><strong>触发</strong>：当短期EMA线（如EMA 26）从下方穿越并上行至长期EMA线（如EMA 50）之上时，形成"黄金交叉"。</li>
+                    <li><strong>操作</strong>：这个交叉点被视为一个强烈的上升趋势开启信号。交易者可以在交叉形成后，或等待价格小幅回调至短期EMA线附近时买入。</li>
+                    <li><strong>目标</strong>：只要短期EMA线保持在长期EMA线上方，且价格持续创造更高的高点，就可以继续持有多头仓位。</li>
+                </ul>
+            </div>
+            
+            <div class="strategy-points">
+                <h4>卖出信号（死亡交叉）</h4>
+                <ul>
+                    <li><strong>情景</strong>：在一段持续的上涨后，BTC价格上涨动力减弱，开始下跌。</li>
+                    <li><strong>触发</strong>：当短期EMA线从上方穿越并下行至长期EMA线之下时，形成"死亡交叉"。</li>
+                    <li><strong>操作</strong>：这被视为下降趋势的开始。交易者应考虑卖出持有的BTC，以锁定利润或避免更大亏损。</li>
+                    <li><strong>目标</strong>：在下降趋势中，交易者应保持空仓或场外观望，直到新的买入信号出现。</li>
+                </ul>
+            </div>
+            
+            <p><strong>重要提示</strong>：加密货币市场的趋势变化迅速，技术指标并非万无一失。有时会出现"假交叉"信号，即交叉后趋势并未延续。因此，结合其他指标（如成交量）和严格的风险管理至关重要。</p>
+        </section>
+        
+        <section class="strategy-section">
+            <h2>融合其他策略：突破交易的确认</h2>
+            
+            <p>趋势跟踪策略可以与<strong>突破交易策略</strong>有效结合。当价格强势突破一个关键的阻力位时，这可以作为趋势可能延续的额外确认信号。</p>
+            
+            <div class="strategy-points">
+                <h4>结合应用</h4>
+                <p>在"黄金交叉"出现后，如果价格进一步放量突破了前一个高点（即关键阻力位），那么这个买入信号的可靠性会大大增强。反之，在"死亡交叉"后跌破关键支撑位，则强化了卖出信号。</p>
+            </div>
+            
+            <img src="https://storage.cryptomus.com/Eqx19O0svYxzqoDsySr7OK6miiP3UuBZw3fT0h4b.jpg" alt="突破交易策略示意图" class="strategy-image">
+        </section>
+        
+        <section class="strategy-section">
+            <h2>风险管理：成功的基石</h2>
+            
+            <p>无论策略多么精妙，没有风险管理，交易最终都可能走向失败。对于波动剧烈的加密货币市场，这一点尤为重要。</p>
+            
+            <div class="strategy-points">
+                <h4>风险管理核心原则</h4>
+                <ul>
+                    <li><strong>设置止损（Stop-Loss）</strong>：这是最重要的风险管理规则。在您每次开仓时，都必须预先设定一个可接受的最大亏损点。例如，在使用EMA策略买入后，可以将止损设置在长期EMA线下方一定比例的位置。一旦价格触及该点位，系统将自动平仓，防止亏损无限扩大。</li>
+                    <li><strong>设定止盈（Take-Profit）</strong>：虽然趋势跟踪旨在"让利润奔跑"，但设定一个初步的止盈目标可以帮助您锁定部分利润。您可以使用风险回报比（如3:1）来设定目标，或在市场出现明显的趋势反转信号（如"死亡交叉"）时平仓。</li>
+                    <li><strong>仓位管理</strong>：永远不要将所有资金投入单次交易。一个普遍的法则是，单次交易的风险不应超过您总交易资金的1%-2%。这意味着，即使止损被触发，您的总资本也只会受到轻微影响。</li>
+                    <li><strong>分散投资</strong>：不要将所有资金都押注在单一加密货币上。将资产分散到几个不同类型且相关性较低的加密项目中，可以有效降低非系统性风险。</li>
+                </ul>
+            </div>
+            
+            <img src="https://www.fmz.com/upload/asset/2d87668986448175d4858.png?width=1300" alt="风险管理图示" class="strategy-image">
+            
+            <h3>结论</h3>
+            <p>趋势跟踪是一个逻辑清晰、易于上手的交易策略，尤其适合初学者把握市场的主要动向。然而，成功运用它的关键在于纪律和一致性——严格遵守指标信号，并始终将风险管理放在首位。请记住，没有一种策略能保证100%的成功率。持续学习，根据市场变化不断调整和优化您的策略，才是长期立足于市场的根本。</p>
+            
+            <a href="backtest.html" class="cta-button">查看策略回测结果</a>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 CryptoStrategy. 保留所有权利。</p>
+            <ul class="footer-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="backtest.html">回测结果</a></li>
+                <li><a href="deployment.html">部署指南</a></li>
+                <li><a href="faq.html">常见问题</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile navigation toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
