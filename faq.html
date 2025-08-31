@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加密货币交易策略 - 常见问题解答</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+        
+        header {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.ctfassets.net/s9n78lc7gxyk/55wKnTgalG8UHmk2JngpVD/b86ad3bdb57c108a4ba1dad3767d8e77/3D_upward_arrows__Bitcoin_and_Ethereum_icons__dynamic_price_chart_in_a_light_style__no_more_element.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        main {
+            padding: 3rem 0;
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-section {
+            margin-bottom: 3rem;
+        }
+        
+        .faq-section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            background-color: white;
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .faq-question:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+        }
+        
+        .faq-question.active::after {
+            content: '-';
+        }
+        
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background-color: white;
+        }
+        
+        .faq-answer.show {
+            padding: 1rem;
+            max-height: 1000px;
+        }
+        
+        .faq-answer ul {
+            padding-left: 1.5rem;
+        }
+        
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .image-card {
+            width: 300px;
+            margin: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .image-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .image-caption {
+            padding: 1rem;
+            text-align: center;
+            background-color: white;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .image-card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">加密货币交易策略</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="strategy.html">策略详情</a></li>
+                    <li><a href="faq.html">常见问题</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>常见问题解答 (FAQ)</h1>
+            <p>在这里，我们汇集了关于本交易策略最常见的问题，希望能为您提供清晰、全面的解答。</p>
+        </div>
+    </section>
+    
+    <main>
+        <div class="container faq-container">
+            <div class="faq-section">
+                <h2>关于策略基础</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">这个交易策略的核心逻辑是什么？</div>
+                    <div class="faq-answer">
+                        <p>本策略是一个基于趋势跟踪的量化交易模型。它主要通过分析移动平均线(MA)、相对强弱指数(RSI)、布林带(Bollinger Bands)等技术指标，结合市场波动率、交易量变化等来识别潜在的买入和卖出信号。其目标是在明确的上升或下降趋势中捕捉价格变动，实现稳定盈利。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">这个策略适用于哪些加密货币？</div>
+                    <div class="faq-answer">
+                        <p>该策略在设计时主要针对高流动性的主流加密货币，如比特币 (BTC) 和以太坊 (ETH)。理论上，经过参数调整，它也可以应用于其他交易对，但我们建议用户在用于新币种前进行充分的回测以验证其有效性。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">这个策略适合哪种类型的交易者？</div>
+                    <div class="faq-answer">
+                        <p>本策略为全自动量化交易模型，最适合那些希望系统化执行交易、避免情绪干扰的交易者。它同样适合对量化交易有一定了解、希望学习或部署自动化策略的技术爱好者。对于完全不了解代码或交易风险的初学者，我们建议您在投入真实资金前，先进行充分的学习和模拟测试。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="image-container">
+                <div class="image-card">
+                    <img src="https://storage.cryptomus.com/PXVGaelT7D0yqaJq0ica49GKjSgKQOFGoLqQTLJF.jpg" alt="加密货币交易策略图表">
+                    <div class="image-caption">策略分析图表示例</div>
+                </div>
+                <div class="image-card">
+                    <img src="https://images.ctfassets.net/s9n78lc7gxyk/28TrasNer4o4RrmhlUH8c7/3090b071f189d49d33a377548c745ffa/A_3D_trading_chart_with_breakout_points__showing_clear_upward_movement_and_bullish_candles_Show_dynamic_trading_strategies_a.jpg" alt="交易突破点分析">
+                    <div class="image-caption">交易突破点分析</div>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h2>优势与风险</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">使用这个策略有哪些主要优势？</div>
+                    <div class="faq-answer">
+                        <ul>
+                            <li><strong>自动化执行：</strong>7x24小时不间断监控市场，自动执行交易，无需人工盯盘。</li>
+                            <li><strong>消除情绪干扰：</strong>严格按照预设规则进行交易，避免因恐惧、贪婪等情绪做出非理性决策。</li>
+                            <li><strong>基于数据决策：</strong>所有交易信号均源于历史数据和数学模型，有客观依据。</li>
+                            <li><strong>高度可定制：</strong>代码是开源的，您可以根据自己的风险偏好和市场理解来调整策略参数或优化逻辑。</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">这个策略存在哪些风险？</div>
+                    <div class="faq-answer">
+                        <ul>
+                            <li><strong>市场系统性风险：</strong>任何交易策略都无法预测或抵御"黑天鹅"事件，如交易所倒闭、监管政策剧变或市场极端崩盘。</li>
+                            <li><strong>策略失效风险：</strong>历史表现不代表未来收益。当市场结构发生根本性变化时（例如从趋势市转为震荡市），原有的策略逻辑可能会失效，导致亏损。</li>
+                            <li><strong>技术风险：</strong>策略依赖于稳定的网络连接、交易所API的正常运行以及服务器的稳定性。任何技术环节中断都可能导致交易失败或错过信号。</li>
+                            <li><strong>过度拟合风险：</strong>在回测中表现优异的参数，可能只是过度拟合了历史数据，在未来的真实市场中表现不佳。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="image-container">
+                <div class="image-card">
+                    <img src="https://storage.cryptomus.com/3K3Uo5WTHR342BSruPDtYuKP7OjL4uTu61M843xW.jpg" alt="加密货币风险管理">
+                    <div class="image-caption">风险管理示意图</div>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h2>部署与使用</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">我需要具备哪些技术知识才能部署这个策略？</div>
+                    <div class="faq-answer">
+                        <p>您需要具备一些基础的技术能力，包括：</p>
+                        <ul>
+                            <li>了解如何使用Git和GitHub来获取代码。</li>
+                            <li>具备基本的命令行操作知识。</li>
+                            <li>了解如何配置API密钥并确保其安全。</li>
+                            <li>了解如何使用Docker或在云服务器（如AWS, GCP, Vultr）上部署应用。</li>
+                        </ul>
+                        <p>我们提供了详细的部署文档来引导您完成每一步。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">部署这个策略需要花费多少钱？</div>
+                    <div class="faq-answer">
+                        <p>策略代码本身是免费开源的。您的主要成本来自于：</p>
+                        <ul>
+                            <li><strong>交易手续费：</strong>由您选择的交易所收取。</li>
+                            <li><strong>服务器费用：</strong>如果您选择在云服务器上运行策略，需要支付服务器租赁费用。对于低频策略，通常可以使用成本较低的微型实例。</li>
+                            <li><strong>资金成本：</strong>您用于交易的本金。</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">我应该如何设置我的交易所API密钥？</div>
+                    <div class="faq-answer">
+                        <p>在交易所创建API密钥时，请务必遵循最小权限原则。只为API密钥开启"允许交易"权限，并关闭"允许提现"权限。同时，强烈建议您将API密钥绑定到您运行策略的服务器的固定IP地址，以最大程度地保障账户安全。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h2>回测与性能</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">你们的回测结果可信吗？</div>
+                    <div class="faq-answer">
+                        <p>我们在项目文档中展示的回测结果是基于TradingView和Backtrader库在2020年1月至2023年12月的历史数据上生成的。我们已经考虑了千分之一的交易手续费和一定的滑点。然而，回测终究是基于历史的模拟，无法完全复现真实交易环境中的所有变量。请理性看待回测结果。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">策略的最大回撤是多少？夏普比率呢？</div>
+                    <div class="faq-answer">
+                        <p>详细的性能指标，包括年化收益率、夏普比率、索提诺比率、最大回撤等，都可以在我们的项目主页或文档中的"性能报告"部分找到。我们建议您重点关注最大回撤，以评估策略可能面临的最大风险水平。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="image-container">
+                <div class="image-card">
+                    <img src="https://www.fmz.com/upload/asset/2d87668986448175d4858.png?width=1300" alt="量化交易策略回测">
+                    <div class="image-caption">策略回测结果示例</div>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h2>其他问题</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">策略会频繁更新吗？我该如何获取更新？</div>
+                    <div class="faq-answer">
+                        <p>是的，我们会根据市场变化和社区反馈，不定期对策略进行优化和更新。您可以通过GitHub的 "Watch" 功能来接收更新通知。我们建议您定期 `git pull` 以获取最新的代码版本。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">如果我遇到了问题，可以从哪里获得帮助？</div>
+                    <div class="faq-answer">
+                        <p>我们鼓励社区协作。如果您遇到问题，可以：</p>
+                        <ul>
+                            <li>首先查阅我们的部署文档和本FAQ页面。</li>
+                            <li>在GitHub项目的 "Issues" 页面提交您的问题，请详细描述您遇到的情况、错误信息和您的操作环境。</li>
+                            <li>加入我们的Discord或Telegram社群，与其他用户进行交流。</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">我可以为这个项目做出贡献吗？</div>
+                    <div class="faq-answer">
+                        <p>当然！我们非常欢迎任何形式的贡献，包括但不限于：发现并报告Bug、提出功能建议、优化代码、完善文档等。您可以通过提交 "Pull Request" 的方式来贡献您的代码。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>© 2023 加密货币交易策略 | 开源项目</p>
+            <ul class="footer-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="strategy.html">策略详情</a></li>
+                <li><a href="faq.html">常见问题</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+            <p>免责声明：加密货币交易存在风险，请谨慎投资。本项目不构成投资建议。</p>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+    
+    <script>
+        // FAQ 折叠功能
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                
+                // 关闭所有其他问题
+                faqQuestions.forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('show');
+                });
+                
+                // 如果当前问题不是活动的，则打开它
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.classList.add('show');
+                }
+            });
+        });
+        
+        // 返回顶部按钮
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
